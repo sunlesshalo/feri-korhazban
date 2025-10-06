@@ -32,8 +32,6 @@
       overflow: visible; /* ne vágja le az alját */
       display: inline-block;
     }
-    .typing { border-right: 0.15em solid var(--fg); animation: blink-caret 0.75s step-end infinite; }
-    @keyframes blink-caret { from, to { border-color: transparent; } 50% { border-color: var(--fg); } }
 
     p.question { margin: 0; font-size: clamp(18px, 4vw, 28px); opacity: 0.65; }
     footer { position: fixed; bottom: 10px; left: 0; right: 0; text-align: center; font-size: 12px; opacity: .5; }
@@ -50,20 +48,17 @@
   </footer>
   <script>
     (function () {
-      var feriInHospital = true; // Állítsd true-ra, ha Feri kórházban van
+      var feriInHospital = false; // Állítsd true-ra, ha Feri kórházban van
       var text = feriInHospital ? 'Igen.' : 'Nem.';
       var el = document.getElementById('answer');
 
       var i = 0;
       var speed = 100; // gyorsabb, természetes tempó
-      el.classList.add('typing');
 
       function type() {
         if (i < text.length) {
           el.textContent += text.charAt(i++);
           setTimeout(type, speed);
-        } else {
-          el.classList.remove('typing'); // kurzor eltűnik a végén
         }
       }
 
