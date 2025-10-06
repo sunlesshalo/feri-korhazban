@@ -1,0 +1,74 @@
+<!-- File: Feri kórházban van már? -->
+<!doctype html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Feri kórházban van már?</title>
+  <meta name="description" content="Egyszerű oldal, ami megmondja: Feri kórházban van-e már." />
+  <style>
+    :root { --bg: #ffffff; --fg: #111111; }
+    @media (prefers-color-scheme: dark) {
+      :root { --bg: #0b0b0b; --fg: #f5f5f5; }
+    }
+    html, body { height: 100%; margin: 0; }
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      display: grid;
+      place-items: center;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    main { text-align: center; }
+    h1 {
+      font-size: clamp(48px, 18vw, 220px);
+      line-height: 1.1; /* kicsit nagyobb, hogy ne vágja le az alját */
+      margin: 0.2em 0 0;
+      letter-spacing: -0.02em;
+      user-select: none;
+      white-space: nowrap;
+      overflow: visible; /* ne vágja le az alját */
+      display: inline-block;
+    }
+    .typing { border-right: 0.15em solid var(--fg); animation: blink-caret 0.75s step-end infinite; }
+    @keyframes blink-caret { from, to { border-color: transparent; } 50% { border-color: var(--fg); } }
+
+    p.question { margin: 0; font-size: clamp(18px, 4vw, 28px); opacity: 0.65; }
+    footer { position: fixed; bottom: 10px; left: 0; right: 0; text-align: center; font-size: 12px; opacity: .5; }
+    a { color: inherit; }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="question" aria-hidden="true">Feri kórházban van már?</p>
+    <h1 id="answer"></h1>
+  </main>
+  <footer>
+    <span id="tz"></span>
+  </footer>
+  <script>
+    (function () {
+      var feriInHospital = true; // Állítsd true-ra, ha Feri kórházban van
+      var text = feriInHospital ? 'Igen.' : 'Nem.';
+      var el = document.getElementById('answer');
+
+      var i = 0;
+      var speed = 100; // gyorsabb, természetes tempó
+      el.classList.add('typing');
+
+      function type() {
+        if (i < text.length) {
+          el.textContent += text.charAt(i++);
+          setTimeout(type, speed);
+        } else {
+          el.classList.remove('typing'); // kurzor eltűnik a végén
+        }
+      }
+
+      type();
+    })();
+  </script>
+</body>
+</html>
