@@ -23,14 +23,14 @@
     }
     main { text-align: center; }
     h1 {
-      font-size: clamp(48px, 18vw, 220px);
-      line-height: 1.1; /* kicsit nagyobb, hogy ne vágja le az alját */
-      margin: 0.2em 0 0;
-      letter-spacing: -0.02em;
+      font-size: clamp(24px, 5vw, 42px);
+      line-height: 1.5;
+      margin: 0.5em 0 0;
+      letter-spacing: -0.01em;
       user-select: none;
-      white-space: nowrap;
-      overflow: visible; /* ne vágja le az alját */
-      display: inline-block;
+      overflow: visible;
+      max-width: 700px;
+      padding: 0 20px;
     }
 
     p.question { margin: 0; font-size: clamp(18px, 4vw, 28px); opacity: 0.65; }
@@ -41,29 +41,7 @@
 <body>
   <main>
     <p class="question" aria-hidden="true">Feri kórházban van már?</p>
-    <h1 id="answer"></h1>
+    <h1>Feri március 18-án utalták be és aznap sikeresen meg is történt az átültetés. Még intenzív osztályon fekszik, de az orvosai szerint remekül halad a felépüléssel.</h1>
   </main>
-  <footer>
-    <span id="tz"></span>
-  </footer>
-  <script>
-    (function () {
-      var feriInHospital = false; // Állítsd true-ra, ha Feri kórházban van
-      var text = feriInHospital ? 'Igen.' : 'Nem.';
-      var el = document.getElementById('answer');
-
-      var i = 0;
-      var speed = 100; // gyorsabb, természetes tempó
-
-      function type() {
-        if (i < text.length) {
-          el.textContent += text.charAt(i++);
-          setTimeout(type, speed);
-        }
-      }
-
-      type();
-    })();
-  </script>
 </body>
 </html>
